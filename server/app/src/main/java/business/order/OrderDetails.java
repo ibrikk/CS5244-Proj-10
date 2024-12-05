@@ -1,6 +1,11 @@
 package business.order;
 
-public class OrderDetails {
+import business.book.Book;
+import business.customer.Customer;
 
-    // NOTE: THIS CLASS PROVIDED NEXT PROJECT
+import java.util.Collections;
+import java.util.List;
+
+public record OrderDetails(Order order, Customer customer,
+        List<LineItem> lineItems, List<Book> books) {
 }
