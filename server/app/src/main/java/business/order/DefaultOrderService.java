@@ -30,6 +30,18 @@ public class DefaultOrderService implements OrderService {
 		this.bookDao = bookDao;
 	}
 
+	public void setOrderDao(OrderDao orderDao) {
+		this.orderDao = orderDao;
+	}
+
+	public void setCustomerDao(CustomerDao customerDao) {
+		this.customerDao = customerDao;
+	}
+
+	public void setLineItemDao(LineItemDao lineItemDao) {
+		this.lineItemDao = lineItemDao;
+	}
+
 	@Override
 	public OrderDetails getOrderDetails(long orderId) {
 		Order order = orderDao.findByOrderId(orderId);
