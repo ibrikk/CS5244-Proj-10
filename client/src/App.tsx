@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <Router
-      basename="/IbrahimBookstoreReactOrder"
+      basename="/IbrahimBookstoreReactTransact"
       future={{
         v7_startTransition: true,
         v7_relativeSplatPath: true,
