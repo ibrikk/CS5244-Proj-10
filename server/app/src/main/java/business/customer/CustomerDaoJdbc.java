@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.mysql.cj.jdbc.result.ResultSetMetaData;
-
 import business.BookstoreDbException.BookstoreQueryDbException;
 import business.BookstoreDbException.BookstoreUpdateDbException;
 
@@ -102,7 +100,6 @@ public class CustomerDaoJdbc implements CustomerDao {
     }
 
     private Customer readCustomer(ResultSet resultSet) throws SQLException {
-        // printResultSet(resultSet);
         long customerId = resultSet.getLong("customer_id");
         String name = resultSet.getString("name");
         String address = resultSet.getString("address");
@@ -112,19 +109,4 @@ public class CustomerDaoJdbc implements CustomerDao {
         Date ccExpDate = resultSet.getDate("cc_exp_date");
         return new Customer(customerId, name, address, phone, email, ccNumber, ccExpDate);
     }
-
-    // public void printResultSet(ResultSet rs) throws SQLException {
-    // ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
-    // int columnsNumber = rsmd.getColumnCount();
-
-    // while (rs.next()) {
-    // for (int i = 1; i <= columnsNumber; i++) {
-    // if (i > 1)
-    // System.out.print(", ");
-    // String columnValue = rs.getString(i);
-    // System.out.print(columnValue + " " + rsmd.getColumnName(i));
-    // }
-    // System.out.println();
-    // }
-    // }
 }

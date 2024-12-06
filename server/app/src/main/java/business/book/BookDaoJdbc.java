@@ -1,8 +1,6 @@
 package business.book;
 
-import business.BookstoreDbException;
 import business.JdbcUtils;
-import business.category.Category;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
