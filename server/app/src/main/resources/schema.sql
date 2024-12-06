@@ -69,13 +69,11 @@ CREATE TABLE `book` (
 -- Table structure for the table `customer_order_line_item`
 --
 
--- SHOW THIS:
 CREATE TABLE `customer_order_line_item` (
-    `line_item_id` INT UNSIGNED AUTO_INCREMENT,
-    `customer_order_id` INT UNSIGNED,
-    `book_id` INT UNSIGNED,
-    `quantity` SMALLINT UNSIGNED DEFAULT 1,
-    PRIMARY KEY (`line_item_id`),
-    FOREIGN KEY (`customer_order_id`) REFERENCES `customer_order`(`customer_order_id`),
-    FOREIGN KEY (`book_id`) REFERENCES `book`(`book_id`)
+                                            `customer_order_id` INT UNSIGNED,
+                                            `book_id` INT UNSIGNED,
+                                            `quantity` SMALLINT UNSIGNED DEFAULT 1,
+                                            PRIMARY KEY (`customer_order_id`, `book_id`),
+                                            FOREIGN KEY (`customer_order_id`) REFERENCES `customer_order`(`customer_order_id`),
+                                            FOREIGN KEY (`book_id`) REFERENCES `book`(`book_id`)
 ) ENGINE = InnoDB;

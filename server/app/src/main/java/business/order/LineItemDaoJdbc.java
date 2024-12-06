@@ -13,34 +13,25 @@ import business.BookstoreDbException.BookstoreUpdateDbException;
 
 public class LineItemDaoJdbc implements LineItemDao {
 
-    private static final String CREATE_LINE_ITEM_SQL = "INSERT INTO customer_order_line_item (book_id, customer_order_id, quantity) "
+    private static final String CREATE_LINE_ITEM_SQL = "INSERT INTO customer_order_line_item (customer_order_id, book_id, quantity) "
             +
             "VALUES (?, ?, ?)";
 
-    private static final String FIND_BY_CUSTOMER_ORDER_ID_SQL = "SELECT book_id, customer_order_id, quantity " +
+    private static final String FIND_BY_CUSTOMER_ORDER_ID_SQL = "SELECT customer_order_id, book_id, quantity " +
             "FROM customer_order_line_item WHERE customer_order_id = ?";
 
     @Override
-    public long create(Connection connection, long orderId, long bookId, int quantity) {
+    public void create(Connection connection, long orderId, long bookId, int quantity) {
         try (PreparedStatement statement = connection.prepareStatement(CREATE_LINE_ITEM_SQL,
                 PreparedStatement.RETURN_GENERATED_KEYS)) {
-            statement.setLong(1, bookId);
-            statement.setLong(2, orderId);
+            statement.setLong(1, orderId);
+            statement.setLong(2, bookId);
             statement.setInt(3, quantity);
             int affected = statement.executeUpdate();
             if (affected != 1) {
                 throw new BookstoreUpdateDbException(
                         "Failed to insert an order line item, affected row count = " + affected);
             }
-            long lineItemId;
-            // -- SHOW THIS:
-            ResultSet rs = statement.getGeneratedKeys();
-            if (rs.next()) {
-                lineItemId = rs.getLong(1);
-            } else {
-                throw new BookstoreUpdateDbException("Failed to retrieve customerId auto-generated key");
-            }
-            return lineItemId;
         } catch (SQLException e) {
             throw new BookstoreUpdateDbException("Encountered problem creating a new line item ", e);
         }
