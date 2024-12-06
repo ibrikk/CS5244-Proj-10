@@ -25,7 +25,7 @@ public class CustomerDaoJdbc implements CustomerDao {
             "FROM customer";
 
     private static final String FIND_BY_CUSTOMER_ID_SQL = "SELECT customer_id, name, address, " +
-            "phone, cc_number, cc_exp_date " +
+            "phone, address, cc_number, cc_exp_date " +
             "FROM customer WHERE customer_id = ?";
 
     @Override
