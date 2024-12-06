@@ -154,3 +154,38 @@ input {
 .total-text-price {
   font-weight: bold;
 }
+
+.order-processing {
+  text-align: center;
+}
+
+.dot-animation {
+  display: inline-block;
+  position: relative;
+  width: 1.5em;
+}
+
+.dot-animation::after {
+  content: "";
+  display: inline-block;
+  animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+  0% {
+    content: "";
+  }
+  33% {
+    content: ".";
+  }
+  66% {
+    content: "..";
+  }
+  100% {
+    content: "..";
+  }
+}
+
+.processing-text {
+  font-weight: bold;
+}

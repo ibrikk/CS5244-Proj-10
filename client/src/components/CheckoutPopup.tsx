@@ -20,6 +20,7 @@ import {
 import { CartContext } from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Spinner from "./Spinner";
 
 const CheckoutPopup: React.FC = () => {
   const now = new Date();
@@ -163,12 +164,18 @@ const CheckoutPopup: React.FC = () => {
     if (validateForm()) {
       setCheckOutStatus(CheckoutStatus.Pending);
       console.log("Form submitted:", formData);
-      const orders = await placeOrder(formData);
-      if (orders) {
-        setCheckOutStatus(CheckoutStatus.OK);
-        navigate("/confirmation");
-      } else {
-        console.log("Error placing order");
+      try {
+        const orders = await placeOrder(formData);
+        if (orders) {
+          setCheckOutStatus(CheckoutStatus.OK); // Success
+          navigate("/confirmation");
+        } else {
+          setCheckOutStatus(CheckoutStatus.Error); // Handle error
+          console.log("Error placing order");
+        }
+      } catch (error) {
+        setCheckOutStatus(CheckoutStatus.Error); // Handle exception
+        console.error("Error during checkout:", error);
       }
     } else {
       setCheckOutStatus(CheckoutStatus.Error);
@@ -218,152 +225,166 @@ const CheckoutPopup: React.FC = () => {
           </button>
         </div>
 
-        <form
-          onSubmit={(e) => submitOrder(e)}
-          method="post"
-          className="checkout-form"
-        >
-          <div className="form-group">
-            <label htmlFor="name" className="field-title">
-              Full Name
-            </label>
-            <input
-              id="fname"
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-            />
+        {checkoutStatus === CheckoutStatus.Pending ? (
+          <div className="order-processing">
+            <Spinner />
+            <p className="processing-text">
+              Processing your order<span className="dot-animation">...</span>
+            </p>
           </div>
-          <> {nameError && <div className="error"> {nameError}</div>}</>
-
-          <div className="form-group">
-            <label htmlFor="address" className="field-title">
-              Address
-            </label>
-            <input
-              id="faddress"
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleInputChange}
-            />
-          </div>
-          <> {addressError && <div className="error"> {addressError}</div>}</>
-
-          <div className="form-group">
-            <label htmlFor="phone" className="field-title">
-              Phone
-            </label>
-            <input
-              id="fphone"
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-            />
-          </div>
-          <> {phoneError && <div className="error"> {phoneError}</div>}</>
-
-          <div className="form-group">
-            <label htmlFor="email" className="field-title">
-              Email
-            </label>
-            <input
-              id="femail"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-          </div>
-          <> {emailError && <div className="error"> {emailError}</div>}</>
-
-          <div className="form-group">
-            <label htmlFor="ccNumber" className="field-title">
-              Credit Card
-            </label>
-            <input
-              id="ccNumber"
-              type="text"
-              name="ccNumber"
-              value={formData.ccNumber}
-              onChange={handleInputChange}
-            />
-          </div>
-          <> {ccNumberError && <div className="error"> {ccNumberError}</div>}</>
-
-          <div className="month-year">
+        ) : (
+          <form
+            onSubmit={(e) => submitOrder(e)}
+            method="post"
+            className="checkout-form"
+          >
             <div className="form-group">
-              <label htmlFor="ccExpiryMonth" className="field-title">
-                Expiry Month
+              <label htmlFor="name" className="field-title">
+                Full Name
               </label>
-              <select
-                className="checkout-select"
-                id="ccExpiryMonth"
-                name="ccExpiryMonth"
-                value={formData.ccExpiryMonth || ""}
+              <input
+                id="fname"
+                type="text"
+                name="name"
+                value={formData.name}
                 onChange={handleInputChange}
-              >
-                <option value="" disabled>
-                  Select Month
-                </option>
-                {months.map((month, index) => (
-                  <option key={index + 1} value={index + 1}>
-                    {month}
-                  </option>
-                ))}
-              </select>
+              />
             </div>
+            <> {nameError && <div className="error"> {nameError}</div>}</>
 
             <div className="form-group">
-              <label htmlFor="ccExpiryYear" className="field-title">
-                Expiry Year
+              <label htmlFor="address" className="field-title">
+                Address
               </label>
-              <select
-                className="checkout-select"
-                id="ccExpiryYear"
-                name="ccExpiryYear"
-                value={formData.ccExpiryYear || ""}
+              <input
+                id="faddress"
+                type="text"
+                name="address"
+                value={formData.address}
                 onChange={handleInputChange}
-              >
-                <option value="" disabled>
-                  Select Year
-                </option>
-                {years.map((year) => (
-                  <option key={year} value={nowYear + year}>
-                    {nowYear + year}
+              />
+            </div>
+            <> {addressError && <div className="error"> {addressError}</div>}</>
+
+            <div className="form-group">
+              <label htmlFor="phone" className="field-title">
+                Phone
+              </label>
+              <input
+                id="fphone"
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+              />
+            </div>
+            <> {phoneError && <div className="error"> {phoneError}</div>}</>
+
+            <div className="form-group">
+              <label htmlFor="email" className="field-title">
+                Email
+              </label>
+              <input
+                id="femail"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+              />
+            </div>
+            <> {emailError && <div className="error"> {emailError}</div>}</>
+
+            <div className="form-group">
+              <label htmlFor="ccNumber" className="field-title">
+                Credit Card
+              </label>
+              <input
+                id="ccNumber"
+                type="text"
+                name="ccNumber"
+                value={formData.ccNumber}
+                onChange={handleInputChange}
+              />
+            </div>
+            <>
+              {" "}
+              {ccNumberError && <div className="error"> {ccNumberError}</div>}
+            </>
+
+            <div className="month-year">
+              <div className="form-group">
+                <label htmlFor="ccExpiryMonth" className="field-title">
+                  Expiry Month
+                </label>
+                <select
+                  className="checkout-select"
+                  id="ccExpiryMonth"
+                  name="ccExpiryMonth"
+                  value={formData.ccExpiryMonth || ""}
+                  onChange={handleInputChange}
+                >
+                  <option value="" disabled>
+                    Select Month
                   </option>
-                ))}
-              </select>
-            </div>
-          </div>
+                  {months.map((month, index) => (
+                    <option key={index + 1} value={index + 1}>
+                      {month}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-          <div className="total-border">
-            <div className="total-container">
-              <div className="items-b4tax-price">
-                <span>Items ({calculateTotalQuantity(cart)}): &nbsp;</span>
-                <span>{asDollarsAndCents(subtotal(cart))}</span>
-              </div>
-              <div className="surcharge">
-                <span>Surcharge: &nbsp;</span>
-                <span>{asDollarsAndCents((subtotal(cart) * VATAX) / 100)}</span>
-              </div>
-              <div className="total-text-price">
-                <span>Total: &nbsp;</span>
-                <span>
-                  {asDollarsAndCents(
-                    subtotal(cart) + (subtotal(cart) * VATAX) / 100
-                  )}
-                </span>
+              <div className="form-group">
+                <label htmlFor="ccExpiryYear" className="field-title">
+                  Expiry Year
+                </label>
+                <select
+                  className="checkout-select"
+                  id="ccExpiryYear"
+                  name="ccExpiryYear"
+                  value={formData.ccExpiryYear || ""}
+                  onChange={handleInputChange}
+                >
+                  <option value="" disabled>
+                    Select Year
+                  </option>
+                  {years.map((year) => (
+                    <option key={year} value={nowYear + year}>
+                      {nowYear + year}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
-          </div>
 
-          <button type="submit" className="submit-btn">
-            Complete Purchase
-          </button>
-        </form>
+            <div className="total-border">
+              <div className="total-container">
+                <div className="items-b4tax-price">
+                  <span>Items ({calculateTotalQuantity(cart)}): &nbsp;</span>
+                  <span>{asDollarsAndCents(subtotal(cart))}</span>
+                </div>
+                <div className="surcharge">
+                  <span>Surcharge: &nbsp;</span>
+                  <span>
+                    {asDollarsAndCents((subtotal(cart) * VATAX) / 100)}
+                  </span>
+                </div>
+                <div className="total-text-price">
+                  <span>Total: &nbsp;</span>
+                  <span>
+                    {asDollarsAndCents(
+                      subtotal(cart) + (subtotal(cart) * VATAX) / 100
+                    )}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" className="submit-btn">
+              Complete Purchase
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
