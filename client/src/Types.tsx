@@ -165,6 +165,7 @@ export interface OrderDetails {
   order: Order;
   customer: CustomerForm;
   books: BookItem[];
+  lineItems: LineItem[];
 }
 
 export interface ServerErrorResponse {
@@ -172,6 +173,20 @@ export interface ServerErrorResponse {
   message: string;
   fieldName: string;
   error: boolean;
+}
+
+export interface LineItem {
+  bookId: number;
+  orderId: number;
+  quantity: number;
+}
+export interface Customer {
+  customerName: string;
+  address: string;
+  phone: string;
+  email: string;
+  ccNumber: string;
+  ccExpDate: number;
 }
 
 const mockData: CategoryMock[] = [
