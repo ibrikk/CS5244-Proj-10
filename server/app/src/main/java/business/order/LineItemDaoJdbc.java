@@ -22,8 +22,9 @@ public class LineItemDaoJdbc implements LineItemDao {
             "FROM customer_order_line_item WHERE customer_order_id = ?";
 
     @Override
-    public long create(Connection connection, long bookId, long orderId, int quantity) {
-        try (PreparedStatement statement = connection.prepareStatement(CREATE_LINE_ITEM_SQL)) {
+    public long create(Connection connection, long orderId, long bookId, int quantity) {
+        try (PreparedStatement statement = connection.prepareStatement(CREATE_LINE_ITEM_SQL,
+                PreparedStatement.RETURN_GENERATED_KEYS)) {
             statement.setLong(1, bookId);
             statement.setLong(2, orderId);
             statement.setInt(3, quantity);
@@ -33,6 +34,7 @@ public class LineItemDaoJdbc implements LineItemDao {
                         "Failed to insert an order line item, affected row count = " + affected);
             }
             long lineItemId;
+            // -- SHOW THIS:
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {
                 lineItemId = rs.getLong(1);
