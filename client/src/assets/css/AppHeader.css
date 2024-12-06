@@ -1,0 +1,94 @@
+header {
+  background-color: var(--secondary-background-color);
+  height: 60px;
+  align-items: center;
+}
+
+.signed-in-image-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name-email-container {
+  margin-left: 10px;
+}
+
+.user-name {
+  font-size: 14px;
+}
+
+.user-email {
+  font-size: 14px;
+  color: #2b6fee;
+}
+
+.text-logo {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 32px;
+}
+
+.logo {
+  transform: rotate(-23.81deg);
+  color: var(--primary-color);
+}
+
+.search-bar {
+  padding: 0.5em;
+}
+
+.top-container {
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sign-in-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 10;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.logo-container {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  font-family: var(--title-font-family);
+}
+
+.shopping-bag {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #e4e4e4;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.shopping-bag:hover {
+  background-color: #f0f0f0;
+  color: var(--hover-text-color);
+}
+
+.badge {
+  position: absolute;
+  top: 3px;
+  background-color: #ff3b2f;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-weight: bold;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

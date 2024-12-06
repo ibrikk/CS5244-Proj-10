@@ -1,0 +1,81 @@
+.book-title {
+  font-weight: bold;
+}
+
+.book-author {
+  font-style: italic;
+  text-align: start;
+}
+
+.cards-container {
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  grid-column: span 2;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .card {
+    grid-column: span 3; /* On medium screens, 4 cards per row */
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .card {
+    grid-column: span 4; /* On smaller screens, 3 cards per row */
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    grid-column: span 6; /* On mobile screens, 2 cards per row */
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .card {
+    grid-column: span 12; /* On very small screens, 1 card per row */
+  }
+}
+
+.add-to-cart-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 10;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  margin-top: 5px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.not-found {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.add-to-cart-btn.clicked {
+  background-color: #ff784e;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(255, 120, 78, 0.6);
+}

@@ -1,0 +1,17 @@
+footer {
+  background: var(--secondary-background-color);
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 20px;
+}
+
+.social-media-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.x-twitter-icon {
+  font-size: 25px;
+}
