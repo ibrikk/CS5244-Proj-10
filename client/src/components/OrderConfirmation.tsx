@@ -27,12 +27,12 @@ const OrderConfirmation = () => {
 
   function maskCreditCard(cardNumber: string, expDate: Date): string {
     const masked = cardNumber
-      .slice(0, -4)
-      .replace(/\d/g, "*")
-      .replace(/(.{4})/g, "$1 "); // Add spaces every 4 digits
-    const lastFour = cardNumber.slice(-4);
+      ?.slice(0, -4)
+      ?.replace(/\d/g, "*")
+      ?.replace(/(.{4})/g, "$1 "); // Add spaces every 4 digits
+    const lastFour = cardNumber?.slice(-4);
 
-    const formattedExpDate = expDate.toLocaleString("en-US", {
+    const formattedExpDate = expDate?.toLocaleString("en-US", {
       month: "2-digit",
       year: "numeric",
     });
