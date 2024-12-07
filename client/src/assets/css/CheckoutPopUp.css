@@ -156,7 +156,11 @@ input {
 }
 
 .order-processing {
-  text-align: center;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .dot-animation {

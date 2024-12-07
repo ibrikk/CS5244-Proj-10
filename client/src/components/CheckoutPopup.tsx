@@ -210,7 +210,6 @@ const CheckoutPopup: React.FC = () => {
 
         {checkoutStatus === CheckoutStatus.Pending ? (
           <div className="order-processing">
-            <Spinner />
             <p className="processing-text">
               Processing your order<span className="dot-animation">&nbsp;</span>
             </p>
