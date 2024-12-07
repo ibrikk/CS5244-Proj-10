@@ -16,13 +16,6 @@ function ConfirmationTable() {
     return total;
   };
 
-  const bookAt = function (
-    orderDetails: OrderDetails,
-    index: number
-  ): LineItem {
-    return orderDetails?.lineItems[index];
-  };
-
   return (
     <table className="confirmation_table">
       <thead>
@@ -39,7 +32,7 @@ function ConfirmationTable() {
             <td className="confirmation_td">{book.bookId}</td>
             <td className="confirmation_td">
               {asDollarsAndCents(
-                book.price * bookAt(orderDetails, i)?.quantity
+                book.price * orderDetails?.lineItems[i]?.quantity
               )}
             </td>
           </tr>
