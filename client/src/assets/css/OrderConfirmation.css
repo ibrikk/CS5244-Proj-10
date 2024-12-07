@@ -1,94 +1,107 @@
-/* Full Page Styling */
+/* Main Page */
 .confirmation-page {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 900px;
+  margin: 20px auto;
   padding: 24px;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Title Styling */
+/* Headers */
 .order-conf-h2 {
-  color: var(--primary-color);
-  font-size: 2rem;
   text-align: center;
+  font-size: 2rem;
+  color: var(--primary-color);
   margin-bottom: 20px;
 }
 
-/* Subtext Styling */
 .order-conf-p {
   text-align: center;
-  font-size: 1.2rem;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
-/* Confirmation Details Section */
-.confirmationView ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 20px 0;
-  font-size: 1rem;
-  color: #333333;
-}
-.confirmationView ul li {
-  margin-bottom: 10px;
-  font-weight: 500;
+/* Details Section */
+.confirmation-details {
+  display: grid;
+  gap: 20px;
 }
 
-/* Buttons */
-.confirm-button {
-  display: block;
-  margin: 32px auto;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-.confirm-button:hover {
-  background-color: #e64a19; /* Darker shade of --primary-color */
-}
-
-/* Table Styles */
-.confirmation_table {
-  border-collapse: collapse;
-  margin: 20px auto;
-  width: 100%;
-  font-size: 1rem;
-  background-color: #ffffff;
-  border: 1px solid #cccccc;
-}
-
-.confirmation_table th,
-.confirmation_table td {
-  text-align: left;
+.transaction-details,
+.customer-details,
+.summary {
+  background-color: #f8f9fa;
   padding: 16px;
+  border-radius: 8px;
+}
+
+.transaction-details h3,
+.customer-details h3,
+.summary h3 {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+
+.transaction-details ul,
+.customer-details ul {
+  list-style: none;
+  padding: 0;
+}
+
+.transaction-details li,
+.customer-details li,
+.summary p {
+  margin: 8px 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Confirmation Table */
+.confirmation_table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
 
 .confirmation_table th {
   background-color: var(--primary-color);
-  color: white;
-  font-weight: bold;
+  color: #fff;
+  text-align: left;
+  padding: 12px;
+}
+
+.confirmation_table td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: left;
 }
 
 .confirmation_tr:nth-child(even) {
   background-color: #f8f9fa;
 }
 
-.confirmation_tr:nth-child(odd) {
-  background-color: #ffffff;
+/* Total Row */
+.total-row td {
+  font-weight: bold;
+  background-color: #ffe8e1;
+  color: var(--primary-color);
 }
 
-/* Total Row */
-.confirmation_table tr:last-child td {
-  font-weight: bold;
-  border-top: 2px solid #cccccc;
-  background-color: #ffe8e1;
-  color: #d84315; /* A shade matching --primary-color */
-  text-align: left;
+/* Buttons */
+.confirm-button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-button:hover {
+  background-color: #e64a19;
 }

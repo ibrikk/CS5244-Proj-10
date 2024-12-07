@@ -29,7 +29,7 @@ const OrderConfirmation = () => {
     const masked = cardNumber
       ?.slice(0, -4)
       ?.replace(/\d/g, "*")
-      ?.replace(/(.{4})/g, "$1 "); // Add spaces every 4 digits
+      ?.replace(/(.{4})/g, "$1 ");
     const lastFour = cardNumber?.slice(-4);
 
     const formattedExpDate = expDate?.toLocaleString("en-US", {
@@ -40,45 +40,60 @@ const OrderConfirmation = () => {
   };
 
   return (
-    <>
-      {orderDetails?.books?.length === 0 ? null : (
-        <div className="confirmation-page">
-          <h2 className="order-conf-h2">Order Confirmed!</h2>
-          <p className="order-conf-p">
-            Thank you for your purchase. Your order has been successfully
-            placed.
-          </p>
-          <div className="confirmationView">
-            <ul>
-              <li>Confirmation #: {orderDetails?.order?.confirmationNumber}</li>
-              <li>{orderDate()}</li>
-            </ul>
-            <ConfirmationTable />
-            <ul>
-              <li>
-                <b>Name:</b> {orderDetails?.customer?.customerName}
-              </li>
-              <li>
-                <b>Address:</b> {orderDetails?.customer?.address}
-              </li>
-              <li>
-                <b>Email:</b> {orderDetails?.customer?.email}
-              </li>
-              <li>
-                <b>Phone:</b> {orderDetails?.customer?.phone}
-              </li>
-              <li>
-                <b>Credit Card:</b>{" "}
-                {maskCreditCard(orderDetails?.customer?.ccNumber, ccExpDate())}
-              </li>
-            </ul>
-          </div>
-          <button onClick={handleClickConfirm} className="confirm-button">
-            Return to Home
-          </button>
+    <div className="confirmation-page">
+      <h2 className="order-conf-h2">Order Confirmed!</h2>
+      <p className="order-conf-p">
+        Thank you for your purchase. Your order has been successfully placed.
+      </p>
+      <div className="confirmation-details">
+        <div className="transaction-details">
+          <h3>Transaction Details</h3>
+          <ul>
+            <li>
+              <strong>Confirmation #:</strong>{" "}
+              {orderDetails?.order?.confirmationNumber}
+            </li>
+            <li>
+              <strong>Date:</strong> {orderDate()}
+            </li>
+          </ul>
         </div>
-      )}
-    </>
+        <div className="customer-details">
+          <h3>Customer Information</h3>
+          <ul>
+            <li>
+              <strong>Name:</strong> {orderDetails?.customer?.customerName}
+            </li>
+            <li>
+              <strong>Email:</strong> {orderDetails?.customer?.email}
+            </li>
+            <li>
+              <strong>Address:</strong> {orderDetails?.customer?.address}
+            </li>
+            <li>
+              <strong>Phone:</strong> {orderDetails?.customer?.phone}
+            </li>
+            <li>
+              <strong>Payment:</strong>{" "}
+              {maskCreditCard(orderDetails?.customer?.ccNumber, ccExpDate())}
+            </li>
+          </ul>
+        </div>
+        <ConfirmationTable />
+        <div className="summary">
+          <h3>Summary</h3>
+          <p>
+            <strong>Surcharge:</strong> $3.50
+          </p>
+          <p>
+            <strong>Total:</strong> $123.50
+          </p>
+        </div>
+      </div>
+      <button onClick={handleClickConfirm} className="confirm-button">
+        Return to Home
+      </button>
+    </div>
   );
 };
 
