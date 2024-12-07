@@ -15,7 +15,7 @@ INSERT INTO `book` (title, author, description, price, rating, is_public, is_fea
 
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Sapiens', 'Yuval Noah Harari', '', 2499, 0, TRUE, FALSE, 1002);
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Animal Farm', 'George Orwell', '', 550, 0, TRUE, FALSE, 1002);
-INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Why Nations Fail', 'Daron Acemoglu and James A. Robinson', '', 13.50, 0, FALSE, FALSE, 1002);
+INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Why Nations Fail', 'Daron Acemoglu and James A. Robinson', '', 1350, 0, FALSE, FALSE, 1002);
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Origin of Species', 'Charles Darwin', '', 2950, 0, TRUE, FALSE, 1002);
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Bananas, Beaches, and Bases', 'Cynthia Enloe', '', 1580, 0, FALSE, FALSE, 1002);
 INSERT INTO `book` (title, author, description, price, rating, is_public, is_featured, category_id) VALUES ('Imagined Communities', 'Benedict Anderson', '', 1840, 0, TRUE, FALSE, 1002);
