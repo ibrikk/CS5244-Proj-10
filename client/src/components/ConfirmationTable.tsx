@@ -12,7 +12,7 @@ function ConfirmationTable({ totalPrice }: ConfirmationTableProps) {
 
   return (
     <div className="confirmation-table-container">
-      <h3>Cart Information</h3>
+      <h3>Order Information</h3>
       <table className="confirmation_table">
         <thead>
           <tr>

@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/IbrahimBookstoreReactTransact/static/css/main.65bf2579.css",
-    "main.js": "/IbrahimBookstoreReactTransact/static/js/main.0d1c45b9.js",
+    "main.js": "/IbrahimBookstoreReactTransact/static/js/main.8120b3da.js",
     "static/js/453.258b012d.chunk.js": "/IbrahimBookstoreReactTransact/static/js/453.258b012d.chunk.js",
     "static/media/diyStringArt.jpg": "/IbrahimBookstoreReactTransact/static/media/diyStringArt.178a865be904c854a73b.jpg",
     "static/media/hero-image.jpg": "/IbrahimBookstoreReactTransact/static/media/hero-image.37982058ad0657bc657a.jpg",
@@ -81,11 +81,11 @@
     "static/media/foodLab.jpg": "/IbrahimBookstoreReactTransact/static/media/foodLab.5bfc1bc647f9b4826ab2.jpg",
     "index.html": "/IbrahimBookstoreReactTransact/index.html",
     "main.65bf2579.css.map": "/IbrahimBookstoreReactTransact/static/css/main.65bf2579.css.map",
-    "main.0d1c45b9.js.map": "/IbrahimBookstoreReactTransact/static/js/main.0d1c45b9.js.map",
+    "main.8120b3da.js.map": "/IbrahimBookstoreReactTransact/static/js/main.8120b3da.js.map",
     "453.258b012d.chunk.js.map": "/IbrahimBookstoreReactTransact/static/js/453.258b012d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.65bf2579.css",
-    "static/js/main.0d1c45b9.js"
+    "static/js/main.8120b3da.js"
   ]
 }
