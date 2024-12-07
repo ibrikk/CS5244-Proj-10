@@ -53,15 +53,6 @@ const CheckoutPopup: React.FC = () => {
   const [phoneError, setPhoneError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [ccNumberError, setCcNumberError] = useState("");
-  // const [ccExpiryMonthError, setCcExpiryMonthError] = useState("");
-  // const [ccExpiryYearError, setCcExpiryYearError] = useState("");
-
-  // const [errors, setErrors] = useState<ServerErrorResponse>({
-  //   reason: "",
-  //   message: "",
-  //   fieldName: "",
-  //   error: false,
-  // });
 
   enum CheckoutStatus {
     Pending = "PENDING",
@@ -75,17 +66,12 @@ const CheckoutPopup: React.FC = () => {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    // console.log("Name: ", name, "Value: ", value);
     const parsedValue =
       name === "ccExpiryMonth" || name === "ccExpiryYear"
         ? parseInt(value, 10)
         : value;
-
-    // Validate the field
     validateField(name, parsedValue.toString());
     setFormData((prev) => ({ ...prev, [name]: value }));
-
-    // console.log("Form data: ", formData);
   };
 
   const validateField = (name: string, value: string) => {
@@ -135,7 +121,7 @@ const CheckoutPopup: React.FC = () => {
           setCcNumberError("");
         }
         break;
-      // case "ccExpiryMonth" validation is done in BE
+      // "ccExpiryMonth" validation is done server-side
       default:
         break;
     }
@@ -167,14 +153,15 @@ const CheckoutPopup: React.FC = () => {
       try {
         const orders = await placeOrder(formData);
         if (orders) {
-          setCheckOutStatus(CheckoutStatus.OK); // Success
+          setCheckOutStatus(CheckoutStatus.OK);
+
           navigate("/confirmation");
         } else {
-          setCheckOutStatus(CheckoutStatus.Error); // Handle error
+          setCheckOutStatus(CheckoutStatus.Error);
           console.log("Error placing order");
         }
       } catch (error) {
-        setCheckOutStatus(CheckoutStatus.Error); // Handle exception
+        setCheckOutStatus(CheckoutStatus.Error);
         console.error("Error during checkout:", error);
       }
     } else {
