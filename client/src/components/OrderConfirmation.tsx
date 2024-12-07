@@ -86,9 +86,6 @@ const OrderConfirmation = () => {
                   <strong>Address:</strong> {orderDetails?.customer?.address}
                 </li>
                 <li>
-                  <strong>Phone:</strong> {orderDetails?.customer?.phone}
-                </li>
-                <li>
                   <strong>Payment:</strong>{" "}
                   {maskCreditCard(
                     orderDetails?.customer?.ccNumber,
