@@ -163,7 +163,7 @@ export interface Order {
 
 export interface OrderDetails {
   order: Order;
-  customer: CustomerForm;
+  customer: Customer;
   books: BookItem[];
   lineItems: LineItem[];
 }

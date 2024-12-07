@@ -1,5 +1,6 @@
 import {
   BookItem,
+  Customer,
   CustomerForm,
   LineItem,
   Order,
@@ -24,7 +25,7 @@ export type OrderDetailsAction = UpdateAction | ClearAction;
 
 export const initialOrderDetailsState: OrderDetails = {
   order: {} as Order,
-  customer: {} as CustomerForm,
+  customer: {} as Customer,
   books: [],
   lineItems: [],
 };
