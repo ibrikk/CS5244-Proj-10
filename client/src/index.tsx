@@ -4,16 +4,19 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import CategoryProvider from "./contexts/CategoryContext";
 import { CartProvider } from "./contexts/CartContext";
+import { OrderDetailsProvider } from "./contexts/OrderDetailsContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <CartProvider>
-    <CategoryProvider>
-      <App />
-    </CategoryProvider>
-  </CartProvider>
+  <OrderDetailsProvider>
+    <CartProvider>
+      <CategoryProvider>
+        <App />
+      </CategoryProvider>
+    </CartProvider>
+  </OrderDetailsProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

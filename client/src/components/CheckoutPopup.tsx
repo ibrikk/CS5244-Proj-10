@@ -21,6 +21,8 @@ import { CartContext } from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./Spinner";
+import { OrderDetailsContext } from "../contexts/OrderDetailsContext";
+import { OrderDetailsActionTypes } from "../reducers/OrderDetailsReducer";
 
 const CheckoutPopup: React.FC = () => {
   const now = new Date();
@@ -61,6 +63,7 @@ const CheckoutPopup: React.FC = () => {
   }
 
   const [checkoutStatus, setCheckOutStatus] = useState<CheckoutStatus | "">("");
+  const [, dispatchOrder] = useContext(OrderDetailsContext);
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -154,7 +157,10 @@ const CheckoutPopup: React.FC = () => {
         const orders = await placeOrder(formData);
         if (orders) {
           setCheckOutStatus(CheckoutStatus.OK);
-
+          dispatchOrder({
+            type: OrderDetailsActionTypes.UPDATE,
+            payload: orders,
+          });
           navigate("/confirmation");
         } else {
           setCheckOutStatus(CheckoutStatus.Error);

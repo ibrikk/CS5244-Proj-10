@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -14,13 +14,17 @@ import "./assets/css/global.css";
 import "./App.css";
 import Cart from "./components/Cart";
 import OrderConfirmation from "./components/OrderConfirmation";
+import { OrderDetailsContext } from "./contexts/OrderDetailsContext";
 
 const App = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
+  const [orderDetails, dispatchOrder] = useContext(OrderDetailsContext);
 
   const toggleSignIn = () => {
     setIsSignedIn(true);
   };
+
+  console.log("orderDetails Main app!!", orderDetails);
 
   return (
     <Router
