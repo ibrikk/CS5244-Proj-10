@@ -3,7 +3,7 @@ import "../assets/css/OrderConfirmation.css";
 import { useContext } from "react";
 import { OrderDetailsContext } from "../contexts/OrderDetailsContext";
 import { asDollarsAndCents } from "../Util";
-import { OrderDetails, BookItem } from "../Types";
+import { OrderDetails, BookItem, LineItem } from "../Types";
 
 function ConfirmationTable() {
   const [orderDetails] = useContext(OrderDetailsContext);
@@ -14,6 +14,13 @@ function ConfirmationTable() {
       total += book.price;
     }
     return total;
+  };
+
+  const bookAt = function (
+    orderDetails: OrderDetails,
+    index: number
+  ): LineItem {
+    return orderDetails?.lineItems[index];
   };
 
   return (
@@ -30,7 +37,11 @@ function ConfirmationTable() {
           <tr className="confirmation_tr" key={i}>
             <td className="confirmation_td">{book.title}</td>
             <td className="confirmation_td">{book.bookId}</td>
-            <td className="confirmation_td">{asDollarsAndCents(book.price)}</td>
+            <td className="confirmation_td">
+              {asDollarsAndCents(
+                book.price * bookAt(orderDetails, i)?.quantity
+              )}
+            </td>
           </tr>
         ))}
         <tr className="confirmation_tr total-row">
