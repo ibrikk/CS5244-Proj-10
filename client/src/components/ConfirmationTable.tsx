@@ -8,30 +8,40 @@ import { OrderDetails, BookItem } from "../Types";
 function ConfirmationTable() {
   const [orderDetails] = useContext(OrderDetailsContext);
 
-  const bookAt = function (
-    orderDetails: OrderDetails,
-    index: number
-  ): BookItem {
-    return orderDetails.books[index];
+  const totalPrice = () => {
+    let total = 0;
+    for (const book of orderDetails.books) {
+      total += book.price;
+    }
+    return total;
   };
+
   return (
     <table className="confirmation_table">
-      {orderDetails.books?.map((book, i) => (
-        <tr className="confirmation_tr" key={i}>
-          <td className="confirmation_td">{book.title}</td>
-          <td className="confirmation_td">{book.bookId}</td>
-          <td className="confirmation_td">
-            {asDollarsAndCents(book.price * 100)}
+      <thead>
+        <tr>
+          <th className="confirmation_th">Title</th>
+          <th className="confirmation_th">Book ID</th>
+          <th className="confirmation_th">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {orderDetails.books?.map((book, i) => (
+          <tr className="confirmation_tr" key={i}>
+            <td className="confirmation_td">{book.title}</td>
+            <td className="confirmation_td">{book.bookId}</td>
+            <td className="confirmation_td">{asDollarsAndCents(book.price)}</td>
+          </tr>
+        ))}
+        <tr className="confirmation_tr total-row">
+          <td className="confirmation_td" colSpan={2}>
+            <b>Total:</b>
+          </td>
+          <td className="confirmation_td total-price">
+            {asDollarsAndCents(totalPrice())}
           </td>
         </tr>
-      ))}
-      <tr>
-        <td>
-          <b>Total :</b>
-        </td>
-        <td></td>
-        <td>{asDollarsAndCents(25.0 * 100)}</td>
-      </tr>
+      </tbody>
     </table>
   );
 }

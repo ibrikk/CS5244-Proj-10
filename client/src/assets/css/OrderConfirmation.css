@@ -1,86 +1,132 @@
+/* Order Confirmation Container */
 .confirmation-container {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
+
+/* Main Content Card */
 .confirmation-content {
-  background-color: white;
-  padding: 24px;
-  border-radius: 8px;
-  max-width: 400px;
-  width: 100%;
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
+
+/* Title Styling */
 .order-conf-h2 {
-  color: var(--primary-color);
-  margin-bottom: 16px;
+  color: #333333;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
+
+/* Subtext Styling */
 .order-conf-p {
-  margin-bottom: 12px;
-  line-height: 1.5;
+  font-size: 1rem;
+  color: #555555;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
+
+/* Confirmation Details Section */
+.confirmationView ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #333333;
+}
+.confirmationView ul li {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* Buttons */
 .close-button {
   background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: 12px 24px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 16px;
+  transition: background-color 0.3s ease-in-out;
 }
 .close-button:hover {
-  background-color: var(--primary-color-dark);
+  background-color: #e64a19; /* Darker shade of --primary-color */
 }
 
-/* AFTER THIS */
-
+/* Confirmation Table */
 .confirmation_table {
-  border: 1px black solid;
-  width: fit-content;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: 100%;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
 }
 
-.confirmation_td {
-  display: table-cell;
-  padding: 0.5em 0.5em;
-  background-color: white;
-  vertical-align: middle;
+.confirmation_table th,
+.confirmation_table td {
+  text-align: left;
+  padding: 12px 16px;
 }
 
-.confirmation_tr:nth-child(even) > td {
-  background-color: lightgray;
+.confirmation_table th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+}
+
+.confirmation_tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.confirmation_tr:nth-child(odd) {
+  background-color: #ffffff;
 }
 
 .confirmation_td:nth-child(1) {
   text-align: left;
 }
 
-.confirmation_td:nth-child(2) {
+.confirmation_td:nth-child(2),
+.confirmation_td:nth-child(3) {
   text-align: center;
 }
 
-.confirmation_td:nth-child(3) {
-  text-align: right;
+/* Total Row */
+.confirmation_table tr:last-child td {
+  font-weight: bold;
+  border-top: 2px solid #cccccc;
+  background-color: #ffe8e1;
+  color: #d84315; /* A shade matching --primary-color */
 }
 
-.checkout-text {
-  margin-top: 40px;
-  margin-left: 50px;
-  margin-bottom: 20px;
-}
-.checkout-view {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  border-radius: 10px;
+/* Responsive Design */
+@media (max-width: 768px) {
+  .confirmation-content {
+    padding: 24px;
+  }
+
+  .confirmation_table {
+    font-size: 0.85rem;
+  }
+
+  .close-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
 }
