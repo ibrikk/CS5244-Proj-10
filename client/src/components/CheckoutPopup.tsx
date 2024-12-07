@@ -46,10 +46,6 @@ const CheckoutPopup: React.FC = () => {
     ccExpiryYear: 0,
   });
 
-  // useEffect(() => {
-  //   console.log("Updated formData: ", formData);
-  // }, [formData]);
-
   const [nameError, setNameError] = useState("");
   const [addressError, setAddressError] = useState("");
   const [phoneError, setPhoneError] = useState("");
@@ -152,7 +148,6 @@ const CheckoutPopup: React.FC = () => {
     e.preventDefault();
     if (validateForm()) {
       setCheckOutStatus(CheckoutStatus.Pending);
-      console.log("Form submitted:", formData);
       try {
         const orders = await placeOrder(formData);
         if (orders) {
@@ -164,7 +159,6 @@ const CheckoutPopup: React.FC = () => {
           navigate("/confirmation");
         } else {
           setCheckOutStatus(CheckoutStatus.Error);
-          console.log("Error placing order");
         }
       } catch (error) {
         setCheckOutStatus(CheckoutStatus.Error);
@@ -172,7 +166,6 @@ const CheckoutPopup: React.FC = () => {
       }
     } else {
       setCheckOutStatus(CheckoutStatus.Error);
-      console.log("Form has errors");
     }
   };
 
@@ -180,7 +173,6 @@ const CheckoutPopup: React.FC = () => {
     const order = { customerForm: customerForm, cart: { itemArray: cart } };
 
     const orders = JSON.stringify(order);
-    console.log("orders", orders);
     const url = "api/orders";
     const orderDetails: OrderDetails = await axios
       .post(url, orders, {
@@ -190,11 +182,9 @@ const CheckoutPopup: React.FC = () => {
       })
       .then((response) => {
         dispatch({ type: "CLEAR" });
-        console.log("Order placed successfully", response.data);
         return response.data;
       })
       .catch((error) => console.log(error));
-    console.log("order deatils: ", orderDetails);
     return orderDetails;
   };
 

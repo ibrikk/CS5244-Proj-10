@@ -24,8 +24,6 @@ const App = () => {
     setIsSignedIn(true);
   };
 
-  console.log("orderDetails Main app!!", orderDetails);
-
   return (
     <Router
       basename="/IbrahimBookstoreReactTransact"
