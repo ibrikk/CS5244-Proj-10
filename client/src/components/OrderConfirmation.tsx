@@ -3,6 +3,7 @@ import "../assets/css/OrderConfirmation.css";
 import { OrderDetailsContext } from "../contexts/OrderDetailsContext";
 import { useContext } from "react";
 import { OrderDetailsActionTypes } from "../reducers/OrderDetailsReducer";
+import ConfirmationTable from "./ConfirmationTable";
 
 const OrderConfirmation = () => {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ const OrderConfirmation = () => {
             <li>Confirmation #: {orderDetails?.order?.confirmationNumber}</li>
             <li>{orderDate()}</li>
           </ul>
-          {/* <ConfirmationTable /> */}
+          <ConfirmationTable />
           <ul>
             <li>
               <b>Name:</b> {orderDetails?.customer?.customerName}
