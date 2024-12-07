@@ -10,8 +10,8 @@ function ConfirmationTable() {
 
   const totalPrice = () => {
     let total = 0;
-    for (const book of orderDetails.books) {
-      total += book.price;
+    for (let i = 0; i < orderDetails.books.length; i++) {
+      total += orderDetails.books[i].price * orderDetails.lineItems[i].quantity;
     }
     return total;
   };
