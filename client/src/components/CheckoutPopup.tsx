@@ -208,11 +208,11 @@ const CheckoutPopup: React.FC = () => {
           </button>
         </div>
 
-        {checkoutStatus === CheckoutStatus.Pending ? (
+        {checkoutStatus !== CheckoutStatus.Pending ? (
           <div className="order-processing">
             <Spinner />
             <p className="processing-text">
-              Processing your order<span className="dot-animation">...</span>
+              Processing your order<span className="dot-animation">&nbsp;</span>
             </p>
           </div>
         ) : (
