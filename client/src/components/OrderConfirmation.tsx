@@ -40,40 +40,45 @@ const OrderConfirmation = () => {
   };
 
   return (
-    <div className="confirmation-page">
-      <h2 className="order-conf-h2">Order Confirmed!</h2>
-      <p className="order-conf-p">
-        Thank you for your purchase. Your order has been successfully placed.
-      </p>
-      <div className="confirmationView">
-        <ul>
-          <li>Confirmation #: {orderDetails?.order?.confirmationNumber}</li>
-          <li>{orderDate()}</li>
-        </ul>
-        <ConfirmationTable />
-        <ul>
-          <li>
-            <b>Name:</b> {orderDetails?.customer?.customerName}
-          </li>
-          <li>
-            <b>Address:</b> {orderDetails?.customer?.address}
-          </li>
-          <li>
-            <b>Email:</b> {orderDetails?.customer?.email}
-          </li>
-          <li>
-            <b>Phone:</b> {orderDetails?.customer?.phone}
-          </li>
-          <li>
-            <b>Credit Card:</b>{" "}
-            {maskCreditCard(orderDetails?.customer?.ccNumber, ccExpDate())}
-          </li>
-        </ul>
-      </div>
-      <button onClick={handleClickConfirm} className="confirm-button">
-        Return to Home
-      </button>
-    </div>
+    <>
+      {orderDetails?.books?.length === 0 ? null : (
+        <div className="confirmation-page">
+          <h2 className="order-conf-h2">Order Confirmed!</h2>
+          <p className="order-conf-p">
+            Thank you for your purchase. Your order has been successfully
+            placed.
+          </p>
+          <div className="confirmationView">
+            <ul>
+              <li>Confirmation #: {orderDetails?.order?.confirmationNumber}</li>
+              <li>{orderDate()}</li>
+            </ul>
+            <ConfirmationTable />
+            <ul>
+              <li>
+                <b>Name:</b> {orderDetails?.customer?.customerName}
+              </li>
+              <li>
+                <b>Address:</b> {orderDetails?.customer?.address}
+              </li>
+              <li>
+                <b>Email:</b> {orderDetails?.customer?.email}
+              </li>
+              <li>
+                <b>Phone:</b> {orderDetails?.customer?.phone}
+              </li>
+              <li>
+                <b>Credit Card:</b>{" "}
+                {maskCreditCard(orderDetails?.customer?.ccNumber, ccExpDate())}
+              </li>
+            </ul>
+          </div>
+          <button onClick={handleClickConfirm} className="confirm-button">
+            Return to Home
+          </button>
+        </div>
+      )}
+    </>
   );
 };
 
