@@ -3,16 +3,12 @@ import { useContext } from "react";
 import { OrderDetailsContext } from "../contexts/OrderDetailsContext";
 import { asDollarsAndCents } from "../Util";
 
-function ConfirmationTable() {
-  const [orderDetails] = useContext(OrderDetailsContext);
+interface ConfirmationTableProps {
+  totalPrice: number;
+}
 
-  const totalPrice = () => {
-    let total = 0;
-    for (let i = 0; i < orderDetails.books.length; i++) {
-      total += orderDetails.books[i].price * orderDetails.lineItems[i].quantity;
-    }
-    return total;
-  };
+function ConfirmationTable({ totalPrice }: ConfirmationTableProps) {
+  const [orderDetails] = useContext(OrderDetailsContext);
 
   return (
     <div className="confirmation-table-container">
@@ -44,7 +40,7 @@ function ConfirmationTable() {
               <b>Total:</b>
             </td>
             <td className="confirmation_td total-price">
-              {asDollarsAndCents(totalPrice())}
+              {asDollarsAndCents(totalPrice)}
             </td>
           </tr>
         </tbody>

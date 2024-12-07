@@ -202,6 +202,8 @@ const imageMap: { [key: string]: { [key: number]: string } } = {
   },
 };
 
+export const VATAX = 5.3;
+
 // Function to add picture paths to each book
 export const addLocalImagePaths = (books: BookItem[], categoryName: string) => {
   return books.map((book: BookItem) => ({

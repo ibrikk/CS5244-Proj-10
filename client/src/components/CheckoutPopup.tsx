@@ -16,6 +16,7 @@ import {
   isMobilePhone,
   isvalidEmail,
   subtotal,
+  VATAX,
 } from "../Util";
 import { CartContext } from "../contexts/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +28,6 @@ import { OrderDetailsActionTypes } from "../reducers/OrderDetailsReducer";
 const CheckoutPopup: React.FC = () => {
   const now = new Date();
   const nowYear = now.getFullYear();
-  const VATAX = 5.3;
 
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
