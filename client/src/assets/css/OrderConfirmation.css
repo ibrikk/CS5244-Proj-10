@@ -105,3 +105,21 @@
 .confirm-button:hover {
   background-color: #e64a19;
 }
+
+/* Buttons */
+.confirm-button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 24px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.confirm-button:hover {
+  background-color: #e64a19;
+}

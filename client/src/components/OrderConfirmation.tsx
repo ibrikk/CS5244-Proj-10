@@ -107,6 +107,9 @@ const OrderConfirmation = () => {
               </p>
             </div>
           </div>
+          <button onClick={handleClickConfirm} className="confirm-button">
+            Return to Home
+          </button>
         </div>
       )}
     </>
