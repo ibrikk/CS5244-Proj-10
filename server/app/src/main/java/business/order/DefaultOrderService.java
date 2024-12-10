@@ -122,7 +122,7 @@ public class DefaultOrderService implements OrderService {
 		String email = customerForm.getEmail();
 		String ccNumber = customerForm.getCcNumber();
 
-		if (name == null || name.equals("") || name.length() > 45) {
+		if (name == null || name.equals("") || name.length() > 45 || name.length() < 4) {
 			throw new ApiException.ValidationFailure("name", "Invalid name field");
 		}
 
@@ -130,9 +130,11 @@ public class DefaultOrderService implements OrderService {
 			throw new ApiException.ValidationFailure("address", "Invalid address field");
 
 		}
+		if (phone == null || phone.isEmpty())
+			throw new ApiException.ValidationFailure("phone", "Invalid phone field");
 		// Removing all spaces, dashes, and patterns from the string
 		phone = phone.replaceAll("[^0-9]", "");
-		if (phone == null || phone.equals("") || phone.length() != 10) {
+		if (phone.equals("") || phone.length() != 10) {
 			throw new ApiException.ValidationFailure("phone", "Invalid phone field");
 		}
 
@@ -140,8 +142,10 @@ public class DefaultOrderService implements OrderService {
 			throw new ApiException.ValidationFailure("email", "Invalid email field");
 		}
 
+		if (ccNumber == null)
+			throw new ApiException.ValidationFailure("ccNumber", "Invalid credit card number");
 		ccNumber = ccNumber.replaceAll("[^0-9]", "");
-		if (ccNumber == null || ccNumber.equals("") || ccNumber.length() < 14 || ccNumber.length() > 16) {
+		if (ccNumber.equals("") || ccNumber.length() < 14 || ccNumber.length() > 16) {
 			throw new ApiException.ValidationFailure("ccNumber", "Invalid credit card number");
 		}
 
@@ -152,6 +156,9 @@ public class DefaultOrderService implements OrderService {
 
 	private boolean expiryDateIsInvalid(String ccExpiryMonth, String ccExpiryYear) {
 		try {
+			if (ccExpiryMonth == null || ccExpiryMonth.isEmpty() || ccExpiryYear.isEmpty() || ccExpiryYear == null) {
+				return true;
+			}
 			YearMonth expiryDate = YearMonth.of(Integer.parseInt(ccExpiryYear), Integer.parseInt(ccExpiryMonth));
 			YearMonth currentDate = YearMonth.now();
 			if (expiryDate.isBefore(currentDate)) {
@@ -168,6 +175,8 @@ public class DefaultOrderService implements OrderService {
 		if (cart.getItems().size() <= 0 || cart.getItems() == null) {
 			throw new ApiException.ValidationFailure("Cart is empty.");
 		}
+
+		System.out.println(cart.getItems().toString());
 
 		cart.getItems().forEach(item -> {
 			if (item.getQuantity() < 1 || item.getQuantity() > 99) {
