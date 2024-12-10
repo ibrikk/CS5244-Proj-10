@@ -37,7 +37,7 @@ function ConfirmationTable({ totalPrice }: ConfirmationTableProps) {
           ))}
           <tr className="confirmation_tr total-row">
             <td className="confirmation_td" colSpan={2}>
-              <b>Total:</b>
+              <b>Subtotal:</b>
             </td>
             <td className="confirmation_td total-price">
               {asDollarsAndCents(totalPrice)}

@@ -20,7 +20,7 @@ public class ShoppingCartItem {
 	// Client sends "product", which we deserialize as a
 	// "product form" to distinguish it as incoming product
 	// rather than a full Product model.
-	@JsonProperty("items")
+	@JsonProperty("book")
 	private BookForm bookForm;
 
 	public ShoppingCartItem() {

@@ -286,15 +286,15 @@ export function isCreditCard(str: string) {
   return !!(sum % 10 === 0 ? sanitized : false);
 }
 
-export const subtotal = (cart: any) => {
+export const subtotal = (cart: ShoppingCartItem[]) => {
   let sum = 0;
   for (const item of cart) {
-    sum += item.items.price * item.quantity;
+    sum += item.book.price * item.quantity;
   }
   return sum;
 };
 
-export const calculateTotalQuantity = (cart: any) => {
+export const calculateTotalQuantity = (cart: ShoppingCartItem[]) => {
   let sum = 0;
   for (const item of cart) {
     sum += item.quantity;

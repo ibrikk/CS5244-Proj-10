@@ -25,22 +25,22 @@ const CartTable: React.FC = () => {
           <div className="heading-subtotal">Amount</div>
         </li>
         {cart.map((item) => (
-          <React.Fragment key={item.id}>
+          <React.Fragment key={item.book.bookId}>
             <li className="ulli">
               <div className="cart-book-image">
                 <img
                   className="cart2"
-                  src={findImageByBookId(item.id)}
-                  alt={item.items.title}
+                  src={findImageByBookId(item.book.bookId)}
+                  alt={item.book.title}
                 />
               </div>
-              <div className="cart-book-title">{item.items.title}</div>
+              <div className="cart-book-title">{item.book.title}</div>
               <div className="cart-book-price">
-                {asDollarsAndCents(item.items.price)}
+                {asDollarsAndCents(item.book.price)}
               </div>
               <div className="cart-book-quantity">
                 <button
-                  onClick={() => handleDecrement(item.id)}
+                  onClick={() => handleDecrement(item.book.bookId)}
                   className="icon-button dec-arrow-button"
                 >
                   <i className="fas fa-chevron-left"></i>
@@ -49,14 +49,14 @@ const CartTable: React.FC = () => {
                   &nbsp;&nbsp;{item.quantity}&nbsp;&nbsp;
                 </span>
                 <button
-                  onClick={() => handleIncrement(item.id)}
+                  onClick={() => handleIncrement(item.book.bookId)}
                   className="icon-button inc-arrow-button"
                 >
                   <i className="fas fa-chevron-right"></i>
                 </button>
               </div>
               <div className="cart-book-subtotal">
-                {asDollarsAndCents(item.quantity * item.items.price)}
+                {asDollarsAndCents(item.quantity * item.book.price)}
               </div>
             </li>
             <li className="line-sep ulli"></li>

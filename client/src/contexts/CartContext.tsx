@@ -5,7 +5,8 @@ import {
   ReactNode,
   useEffect,
 } from "react";
-import { cartReducer, ShoppingCartItem } from "../reducers/CartReducer";
+import { cartReducer } from "../reducers/CartReducer";
+import { ShoppingCartItem } from "../Types";
 
 const initialCartState: ShoppingCartItem[] = [];
 

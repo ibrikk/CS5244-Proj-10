@@ -171,8 +171,8 @@ const CheckoutPopup: React.FC = () => {
 
   const placeOrder = async (customerForm: CustomerForm) => {
     const order = { customerForm: customerForm, cart: { itemArray: cart } };
-
     const orders = JSON.stringify(order);
+    console.log(orders);
     const url = "api/orders";
     const orderDetails: OrderDetails = await axios
       .post(url, orders, {

@@ -29,8 +29,8 @@ const CategoryProvider: React.FC<CategoryProviderProps> = ({ children }) => {
   useEffect(() => {
     axios
       .get(
-        "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactTransact/api/categories"
-        // "http://localhost:8080/IbrahimBookstoreReactTransact/api/categories"
+        // "http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactTransact/api/categories"
+        "http://localhost:8080/IbrahimBookstoreReactTransact/api/categories"
       )
       .then((result) =>
         dispatch({ type: SET_CATEGORIES, payload: result.data })

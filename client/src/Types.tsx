@@ -112,12 +112,10 @@ export interface CategoryItem {
 }
 
 export class ShoppingCartItem {
-  id: number;
   book: BookItem;
   quantity: number;
 
   constructor(theBook: BookItem) {
-    this.id = theBook.bookId;
     this.book = theBook;
     this.quantity = 1;
   }
