@@ -156,7 +156,7 @@ public class DefaultOrderService implements OrderService {
 
 	private boolean expiryDateIsInvalid(String ccExpiryMonth, String ccExpiryYear) {
 		try {
-			if (ccExpiryMonth == null || ccExpiryMonth.isEmpty() || ccExpiryYear.isEmpty() || ccExpiryYear == null) {
+			if (ccExpiryMonth == null || ccExpiryMonth.isEmpty() || ccExpiryYear == null || ccExpiryYear.isEmpty()) {
 				return true;
 			}
 			YearMonth expiryDate = YearMonth.of(Integer.parseInt(ccExpiryYear), Integer.parseInt(ccExpiryMonth));
@@ -168,15 +168,12 @@ public class DefaultOrderService implements OrderService {
 			return true;
 		}
 		return false;
-
 	}
 
 	private void validateCart(ShoppingCart cart) {
 		if (cart.getItems().size() <= 0 || cart.getItems() == null) {
 			throw new ApiException.ValidationFailure("Cart is empty.");
 		}
-
-		System.out.println(cart.getItems().toString());
 
 		cart.getItems().forEach(item -> {
 			if (item.getQuantity() < 1 || item.getQuantity() > 99) {
