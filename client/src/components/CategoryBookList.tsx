@@ -28,8 +28,8 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ toggleSignIn }) => {
     setLoading(true);
     axios
       .get(
-        // `http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactTransact/api/categories/name/${categoryName}/books`
-        `http://localhost:8080/IbrahimBookstoreReactTransact/api/categories/name/${categoryName}/books`
+        `http://webdev.cs.vt.edu:8080/IbrahimBookstoreReactTransact/api/categories/name/${categoryName}/books`
+        // `http://localhost:8080/IbrahimBookstoreReactTransact/api/categories/name/${categoryName}/books`
       )
       .then((result) => {
         const booksWithImages = addLocalImagePaths(result.data, categoryName);
